@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,800;1,500&display=swap');
+
+
+.book-row {
+  display: flex;
+  flex-direction: row;  
+  transition: 1s;
+  border-radius: 5px;
+  padding-left: 1ex;
+  cursor: pointer;
+}
+
+.book-row:hover {
+  background-color: #eee;
+}
+
+.book-row-author {
+  font-weight: 1000 !important;
+}
+
+p {
+  margin-right: 2em;
+  font-weight: 300;
+}
+
+.book-row-date {
+  text-align: right;
+}
