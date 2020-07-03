@@ -2,7 +2,10 @@ const mongoose = require("mongoose");
 
 //"mongodb://localhost/books"
 mongoose
-  .connect("mongodb+srv://Alex:dzwzdPdek12@cluster0.ywmut.mongodb.net/books")
+  .connect("mongodb+srv://Alex:dzwzdPdek12@cluster0.ywmut.mongodb.net/books", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => console.log("Connected to MongoDB..."))
   .catch((err) => console.log(err));
 
@@ -62,7 +65,7 @@ const getBooks = async () => {
     importDate: 1,
   });
   console.log(books);
-  
+
   return books;
 };
 
