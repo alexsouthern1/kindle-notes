@@ -6,7 +6,7 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() => console.log("Connected to MongoDB..."))
+  .then(() => console.log("Connected to MongoDB: books collection"))
   .catch((err) => console.log(err));
 
 // Using schema constructor
@@ -57,20 +57,18 @@ const deleteBookWithTitle = async (name) => {
   });
 };
 
-const getBooks = async () => {
+const updateBooks = async () => {
   const books = await Books.find().select({
     title: 1,
     author: 1,
     notesCount: 1,
     importDate: 1,
   });
-  console.log(books);
 
   return books;
 };
 
 module.exports = {
   createBook,
-  deleteBookWithTitle,
-  getBooks,
+  deleteBookWithTitle
 };
