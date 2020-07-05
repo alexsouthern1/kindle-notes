@@ -1,0 +1,50 @@
+.drev-outer-container {
+  width: 100%;
+  height: 100vh;
+}
+
+body {
+  background-color: #f1f5f8;
+}
+
+.drev-columns {
+  /* width: 100%; */
+  height: 100%;
+  flex-direction: row;
+  display: flex;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.brev-header {
+  margin-top: 2rem;
+  margin-bottom: 1em;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  flex: auto;
+  align-items: center;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  flex-wrap: nowrap;
+}
+
+.drev-bottom-buttons-container {
+  display: flex;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-bottom: 1rem;
+}
+
+.drev-bottom-buttons-container:hover p {
+  opacity: 1;  
+}
+
+.drev-main-highlights-column {  
+  flex: 4;
+  flex-shrink: 0;
+  overflow-y: auto;
+  /* overflow-y: hidden;  */
+}

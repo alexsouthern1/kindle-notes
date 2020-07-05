@@ -1,5 +1,4 @@
 import React from "react";
-import Welcome_Header from "../../Welcome_Header/Welcome_Header";
 import Contact from "../Contact/Contact";
 import "./Welcome.css";
 import { Container, Navbar, Nav } from "react-bootstrap";
@@ -33,8 +32,7 @@ const Welcome = () => {
           </Nav.Link>
         ))}
       </Nav>
-      </Navbar>
-      <Welcome_Header />
+      </Navbar>      
       <div className="main-body">
         <h1 className="title">Welcome!</h1>
         <p>

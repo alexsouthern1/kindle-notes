@@ -26,6 +26,10 @@ const notesSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  favourite: {
+    type: Boolean,
+    required: true,
+  },
 });
 
 // first argument: singular name of collection that the model is for
@@ -34,14 +38,12 @@ const notesSchema = new mongoose.Schema({
 const Notes = mongoose.model("Notes", notesSchema);
 
 const addNote = async (note) => {
-  console.log("Called from notes.js");
-  console.log(note);
-
   const newNote = new Notes({
     bookTitle: note.Title,
-    bookAuthor: "Alex",
+    bookAuthor: note.Author,
     noteDate: note.Date,
     noteText: note.Text,
+    favourite: false,
   });
   await newNote.save();
 };
@@ -108,10 +110,31 @@ const bookImportDates = async () => {
 };
 
 const getNotesFromBook = async (book) => {
-  temp = Notes.find({ bookTitle: book })
-    .select({ bookTitle: 1, noteText: 1, noteDate: 1 })
-    .sort({ noteDate: 1 });
+  temp = Notes.find({ bookTitle: book }).select().sort({ noteDate: 1 });
+  return temp;
+};
 
+const getFavouriteNotes = async () => {
+  temp = Notes.find({ favourite: true }).select({}).sort({ bookTitle: 1 });
+};
+
+const updateFavouriteNotes = async (id) => {      
+  findByID(id)
+    .then((note) => {      
+      const newFavouriteBool = !note[0].favourite;            
+      Notes.findOneAndUpdate(
+        { _id: id },
+        { favourite: newFavouriteBool }
+      ).then(function () {});
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+const findByID = async (id) => {
+  // console.log("Finding by id: " + id);
+  temp = Notes.find({ _id: id }).select({});
   return temp;
 };
 
@@ -123,4 +146,7 @@ module.exports = {
   distinctBookDetails,
   bookImportDates,
   getNotesFromBook,
+  getFavouriteNotes,
+  updateFavouriteNotes,
+  findByID,
 };

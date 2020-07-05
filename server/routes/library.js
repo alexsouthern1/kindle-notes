@@ -10,11 +10,10 @@ router.get("/", (req, res) => {
   console.log("Get request has worked!", req.query);
 });
 
-router.get("/getBooks", (req, res) => {
+router.get("/getbooks", (req, res) => {
   details = notes
     .distinctBookDetails()
     .then((result) => {
-      console.log("Sending distinct book details to client");
       res.send(result);
     })
     .catch((err) => {

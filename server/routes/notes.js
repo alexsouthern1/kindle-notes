@@ -3,17 +3,12 @@ const express = require("express");
 const router = express.Router();
 const parser = require("../parser");
 
-// How can I get this loaded up every time rather than call function each time
-// Don't necessarily need to once books are in DB 
-
 const addNotes = async () => {
   try {
-    let notesArr = await parser.getNotes();
-    console.log("addNotes called");
+    let notesArr = await parser.getNotes();    
     // console.log(notesArr);
     for (i = 0; i < notesArr.length; i++) {
-      note = notesArr[i];
-      console.log("Adding a note");
+      note = notesArr[i];      
       notes.addNote(note);
     }
   } catch (err) {
@@ -42,8 +37,10 @@ const getUniqueBooks = async () => {
 // deleteOneNote();
 // deleteAllNotes();
 // addNotes();
-getUniqueBooks();
+// getUniqueBooks();
 
 router.get("/", (req, res) => {
   console.log("Request to add books has worked");
 });
+
+module.exports  = router;

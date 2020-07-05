@@ -1,28 +1,62 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,800;1,500&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,800;1,500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;900&display=swap');
 
 .book-row {
   display: flex;
-  flex-direction: row;  
+  flex-direction: row;
   transition: 1s;
-  border-radius: 5px;
+  border-radius: 4px;
   padding-left: 1ex;
+  padding-right: 1ex;
   cursor: pointer;
+  padding-bottom: 1px;
+  padding-top: 1px;
+  align-items: center;
+  font-family: "Raleway";
+  border-bottom: 1px solid #eee;
 }
 
 .book-row:hover {
   background-color: #eee;
 }
 
-.book-row-author {
-  font-weight: 1000 !important;
+.book-row-title {
+  font-weight: 600;
 }
 
-p {
-  margin-right: 2em;
-  font-weight: 300;
+.book-row-image {
+  float: left;
 }
 
-.book-row-date {
+.book-row-box {
+  text-align: left;
+  font-weight: 600;
+  flex: 1 1 0%;
+}
+
+.date-div {
+  margin-left: auto;
+  min-width: 130px;
   text-align: right;
+  font-weight: 500;
+}
+
+.badge {
+  position: absolute;
+  font-size: 9px;
+  background: aliceblue;
+  color: #302f4a;
+  padding-left: 4px;
+  text-align: center;
+  line-height: 18px;
+  /* bottom: 0; */
+  margin-left: 1em;
+  padding-right: 4px;
+  white-space: nowrap;
+}
+
+.column {
+  padding: 0.75rem;
 }
