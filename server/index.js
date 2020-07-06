@@ -15,7 +15,7 @@ app.use("/library", libraryRoute);
 
 app.use("/bookreview", bookReviewRoute);
 
-app.use("/favourites", favouritesRoute);
+app.use("/favourite", favouritesRoute);
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));

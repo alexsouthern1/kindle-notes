@@ -28,7 +28,7 @@ const deleteOneNote = async () => {
 const getUniqueBooks = async () => {
   try {    
     bookDetails = await notes.distinctBookDetails();    
-    console.log(temp);
+    console.log(bookDetails);
   } catch (err) {
     console.log(err);
   }

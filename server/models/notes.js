@@ -77,15 +77,17 @@ const getUniqueTitles = async () => {
 
 const distinctBookDetails = async () => {
   temp = Notes.aggregate([
-    { $match: {} },
-    // Defining the structure of the information we want. e.g. want field called _id.
+    { $match: {} },    
+    // Defining the structure of the information we want. e.g. want field called _id.    
     {
       $group: {
-        _id: { title: "$bookTitle", author: "$bookAuthor" },
+        _id: { title: "$bookTitle", author: "$bookAuthor",},
+        id: { $first: "$_id"},
+        date: { $first: "$noteDate" },
         count: { $sum: 1 },
       },
-    },
-    { $sort: { count: -1 } },
+    },    
+    { $sort: { count: -1, noteDate: 1 } },
   ]);
   return temp;
 };

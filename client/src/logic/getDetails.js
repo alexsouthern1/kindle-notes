@@ -7,3 +7,7 @@ export const getBooks = async () => {
 export const getNotesDetails = async (payload) => {
   return await get(`/bookreview?bookTitle=${payload.title}`);
 }
+
+export const getFavouriteFlag = async (payload) => {
+  return await get(`/favourite?id=${payload.id}`);
+}

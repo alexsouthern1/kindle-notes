@@ -14,6 +14,7 @@ router.get("/getbooks", (req, res) => {
   details = notes
     .distinctBookDetails()
     .then((result) => {
+      // console.log(result);      
       res.send(result);
     })
     .catch((err) => {

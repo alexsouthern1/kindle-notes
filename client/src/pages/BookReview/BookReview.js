@@ -19,7 +19,7 @@ const BookReview = (props) => {
     } else {
       tempTitle = props.location.state.bookTitle;
     }
-    
+
     setTitle(tempTitle);
     setAuthor(props.location.state.author);
 
@@ -48,6 +48,7 @@ const BookReview = (props) => {
                   title={note.bookTitle}
                   author={author}
                   note={note.noteText}
+                  id={note.id}
                 />
               </div>
             ))}

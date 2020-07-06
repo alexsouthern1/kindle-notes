@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Library.css";
 import Book from "../../components/Book/Book";
-import { sendDetails, sendApi } from "../../logic/sendDetails";
 import { getBooks } from "../../logic/getDetails";
 
 const Library = () => {
@@ -36,7 +35,7 @@ const Library = () => {
                   title={book._id.title}
                   author={book._id.author}
                   notesCount={book.count}
-                  importDate="02/03/2004"
+                  importDate={book.date}
                 />
               </div>
             ))}
