@@ -1,8 +1,12 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import "./Book.css";
 import { Link } from "react-router-dom";
 
 const Book = ({ title, author, notesCount, importDate }) => {
+  const [favFlag, setFavFlag] = useState(false);
+  
+
+
   return (
     <div className="book-row">
       <div style={{ minWidth: 40 }}>
@@ -16,7 +20,10 @@ const Book = ({ title, author, notesCount, importDate }) => {
 
       <div className="book-row-box">
         <Link
-          to={{ pathname: "bookreview:", state: {bookTitle: title, author: author}}}
+          to={{
+            pathname: "bookreview:",
+            state: { bookTitle: title, author: author },
+          }}
           style={{ textDecoration: "none", color: "#222" }}
         >
           <b className="book-row-title">{title}</b>

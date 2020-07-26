@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Welcome from "./pages/Welcome/Welcome";
 import Home from "./pages/Home/Home";
 import DailyReview from "./pages/DailyReview/DailyReview";
@@ -16,6 +16,7 @@ import {
 } from "react-router-dom";
 import Library from "./pages/Library/Library";
 import { Nav } from "react-bootstrap";
+import PageNotFound from "./pages/PageNotFound/PageNotFound";
 
 const App = () => {
   const routes = [
@@ -24,6 +25,7 @@ const App = () => {
     { path: "/dailyreview:", name: "Daily Review", Component: DailyReview },
     { path: "/bookreview:", name: "Book Review", Component: BookReview },
     { path: "/favourites:", name: "Favourites", Component: Favourites },
+    // { path: "/pagenotfound:", name: "", Component: PageNotFound }
   ];
   return (
     <Router>
@@ -33,7 +35,9 @@ const App = () => {
             <h3 className="logo">Lucy.</h3>
 
             <div className="header-navigation">
+              
               {routes.map((route) => (
+                <Switch>
                 <Nav.Link
                   key={route.path}
                   as={NavLink}
@@ -44,7 +48,9 @@ const App = () => {
                 >
                   {route.name}
                 </Nav.Link>
+                </Switch>
               ))}
+              
             </div>
           </div>
         </div>

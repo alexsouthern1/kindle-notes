@@ -2,6 +2,20 @@ import React, { useState, useEffect } from "react";
 import ReviewCard from "../../components/ReviewCard/ReviewCard";
 import "./BookReview.css";
 import { getNotesDetails } from "../../logic/getDetails";
+import styled from "styled-components";
+
+const BookTitle = styled.h1`
+flex: 1;
+font-weight: 500;
+color: #1C3D5A;
+font-size: 20px
+`;
+
+const BookAuthor = styled.h1`
+  flex: 1;
+  color: #8795A1;
+  font-size: 20px
+`;
 
 const BookReview = (props) => {
   const [notesDetails, setNotesDetails] = useState([]); // array of objects
@@ -9,7 +23,7 @@ const BookReview = (props) => {
   const [author, setAuthor] = useState();
 
   useEffect(() => {
-    getNotes();
+    getNotes();    
   }, []);
 
   const getNotes = async () => {
@@ -36,8 +50,8 @@ const BookReview = (props) => {
     <div>
       <div className="drev-outer-container">
         <div className="brev-header">
-          <div style={{ flex: 1, fontWeight: 600 }}>{title}</div>
-          <div style={{ flex: 1 }}>{author}</div>
+          <BookTitle>{title}</BookTitle>
+          <BookAuthor>{author}</BookAuthor>
         </div>
         <div className="drev-columns">
           <div className="column is-1 nav-arrow-left"></div>
