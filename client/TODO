@@ -1,7 +1,13 @@
 ## BookReview
-* Currently based on Link to page that passes in props. 
-  Instead, use a state (e.g. current book in review), to have persistency and avoid null errors 
-
 * pictures for each book
 
+
+
+
 * add favourite notes
+  * client
+  * backend 
+  * See ReviewCard for details on what to do 
+
+
+## Dashboard

@@ -16,7 +16,7 @@ const Library = ({ books, setBookList }) => {
   const handleSubmit = async (e) => {
     try {
       const res = await getBooks();
-      setBookList(res);      
+      setBookList(res);
     } catch (err) {
       alert("Error occurred");
       console.error(err);
@@ -31,24 +31,29 @@ const Library = ({ books, setBookList }) => {
       <div className="library-hero">
         <div classname="container">
           <div className="book-list">
-            {books[0] && books[0].length > 0
-              ? books[0].map((book) => (
-                  <div className="book-row-parent">
-                    <Book
-                      title={book._id.title}
-                      author={book._id.author}
-                      notesCount={book.count}
-                      importDate={book.date}
-                    />
-                  </div>
-                ))
-              : <i className="fa fa-spinner fa-pulse fa-3x fa-fw"/>}
+            {books[0] && books[0].length > 0 ? (
+              books[0].map((book, id) => (
+                <div
+                  id={id}
+                  className="book-row-parent"
+                >
+                  <Book
+                    title={book._id.title}
+                    author={book._id.author}
+                    notesCount={book.count}
+                    importDate={book.date}
+                  />
+                </div>
+              ))
+            ) : (
+              <i className="fa fa-spinner fa-pulse fa-3x fa-fw" />
+            )}
           </div>
         </div>
       </div>
       <button
         style={{ marginTop: "2.5%", marginBottom: "2.5%" }}
-        class="btn btn-primary btn-text"
+        className="btn btn-primary btn-text"
         onClick={handleSubmit}
       >
         Refresh List

@@ -17,6 +17,7 @@ import {
 import Library from "./pages/Library/Library";
 import { Nav } from "react-bootstrap";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
+import Dashboard from "./pages/Dashboard/Dashboard";
 
 const App = () => {
   const routes = [
@@ -25,6 +26,7 @@ const App = () => {
     { path: "/dailyreview:", name: "Daily Review", Component: DailyReview },
     { path: "/bookreview:", name: "Book Review", Component: BookReview },
     { path: "/favourites:", name: "Favourites", Component: Favourites },
+    { path: "/dashboard:", name: "Dashboard", Component: Dashboard },
     // { path: "/pagenotfound:", name: "", Component: PageNotFound }
   ];
   return (
@@ -35,30 +37,26 @@ const App = () => {
             <h3 className="logo">Lucy.</h3>
 
             <div className="header-navigation">
-              
               {routes.map((route) => (
                 <Switch>
-                <Nav.Link
-                  key={route.path}
-                  as={NavLink}
-                  to={route.path}
-                  activeClassName="active"
-                  className="nav-element"
-                  exact
-                >
-                  {route.name}
-                </Nav.Link>
+                  <Nav.Link
+                    key={route.path}
+                    as={NavLink}
+                    to={route.path}
+                    activeClassName="active"
+                    className="nav-element"
+                    exact
+                  >
+                    {route.name}
+                  </Nav.Link>
                 </Switch>
               ))}
-              
             </div>
           </div>
         </div>
         <div>
-          {routes.map((
-            { path, Component }
-          ) => (
-            <Route key={path} exact path={path} component={Component} />                          
+          {routes.map(({ path, Component }) => (
+            <Route key={path} exact path={path} component={Component} />
           ))}
         </div>
       </div>

@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import "./ReviewCard.css";
 import { getFavouriteFlag } from "../../logic/getDetails";
 import ReactTooltip from "react-tooltip";
+import { toggleFavouriteNote } from "../../redux/"
+import {connect} from "react-redux"
 
-const ReviewCard = ({ title, author, note, id }) => {
+const ReviewCard = ({ title, author, note, id, favNotes, toggleFavNote }) => {
   const [favouriteFlag, setFavouriteFlag] = useState(false);
   const [idState, setIDState] = useState();
 
@@ -14,6 +16,14 @@ const ReviewCard = ({ title, author, note, id }) => {
 
   const handleFavouriteFlag = async () => {
     console.log(`Button clicked! id: ${id}`);
+    // toggleFavNote()
+    // TODO: get favourite notes toggle working
+    // just need to determine best way to see if note is true or false
+    // if true, set favouriteFlag = true, o.w. false 
+    // might be inefficient to query databse for each note on page, 
+    // therefore store all notes in redux store (update databse when favourites change and update store at same time)
+
+
     try {
       const resp = await getFavouriteFlag({ id });
     } catch (err) {
@@ -21,7 +31,12 @@ const ReviewCard = ({ title, author, note, id }) => {
     }
   };
 
-  const updateFavouriteFlag = async () => {};
+  
+
+
+  const updateFavouriteFlag = async () => {
+
+  };
 
   return (
     <div className="drev-main-highlights-container">
@@ -55,7 +70,14 @@ const ReviewCard = ({ title, author, note, id }) => {
                   <img src="https://readwise-assets.s3.amazonaws.com/static/images/icons/tag.f67ddb3a33cb.svg" />
                 </p>
               </a>
-              <ReactTooltip className="custom-tooltip" id="tags" delayShow={200} delayHide={100} type="info" effect="solid">
+              <ReactTooltip
+                className="custom-tooltip"
+                id="tags"
+                delayShow={200}
+                delayHide={100}
+                type="info"
+                effect="solid"
+              >
                 <span>Add tags to this highlight.</span>
               </ReactTooltip>
               <p className="icon-label">Tag</p>
@@ -63,14 +85,21 @@ const ReviewCard = ({ title, author, note, id }) => {
             <div className="level-item icon-parent has-text-centered no-select">
               <a data-tip data-for="favourite">
                 <p className="drev-p">
-                  {favouriteFlag ? (
+                  {!favouriteFlag ? (
                     <img src="https://readwise-assets.s3.amazonaws.com/static/images/icons/favorite-full.519718cc5ddf.svg" />
                   ) : (
                     <img src="https://readwise-assets.s3.amazonaws.com/static/images/icons/favorite.90dd0caf3364.svg" />
                   )}
                 </p>
               </a>
-              <ReactTooltip className="custom-tooltip" id="favourite" delayShow={200} delayHide={100} type="info" effect="solid">
+              <ReactTooltip
+                className="custom-tooltip"
+                id="favourite"
+                delayShow={200}
+                delayHide={100}
+                type="info"
+                effect="solid"
+              >
                 <span>
                   Favourite your best highlights and make it easy to find them
                   later.
@@ -84,7 +113,14 @@ const ReviewCard = ({ title, author, note, id }) => {
                   <img src="https://readwise-assets.s3.amazonaws.com/static/images/icons/note.a58295468439.svg" />
                 </p>
               </a>
-              <ReactTooltip className="custom-tooltip" id="edit" delayShow={200} delayHide={100} type="info" effect="solid">
+              <ReactTooltip
+                className="custom-tooltip"
+                id="edit"
+                delayShow={200}
+                delayHide={100}
+                type="info"
+                effect="solid"
+              >
                 <span>Add a note or edit your highlight.</span>
               </ReactTooltip>
               <p className="icon-label">Edit</p>
@@ -95,7 +131,14 @@ const ReviewCard = ({ title, author, note, id }) => {
                   <img src="https://readwise-assets.s3.amazonaws.com/static/images/icons/share.72e0a6c38285.svg" />
                 </p>
               </a>
-              <ReactTooltip className="custom-tooltip" id="share" delayShow={200} delayHide={100} type="info" effect="solid">
+              <ReactTooltip
+                className="custom-tooltip"
+                id="share"
+                delayShow={200}
+                delayHide={100}
+                type="info"
+                effect="solid"
+              >
                 <span>Share your highlight.</span>
               </ReactTooltip>
               <p className="icon-label">Share</p>
@@ -103,15 +146,20 @@ const ReviewCard = ({ title, author, note, id }) => {
           </div>
         </div>
       </div>
-      <button
-        style={{ marginTop: "2.5%", marginBottom: "2.5%" }}
-        class="btn btn-primary btn-text"
-        onClick={handleFavouriteFlag}
-      >
-        Submit favourite
-      </button>
     </div>
   );
 };
 
-export default ReviewCard;
+const mapStateToProps = state => {
+  return {
+    favNotes: state.notes.favNotes
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    toggleFavNote: (note) => dispatch(toggleFavouriteNote(note))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ReviewCard);

@@ -1,10 +1,15 @@
-import { TOGGLE_FAVOURITE_NOTE, SET_BOOK_LIST } from "../actionTypes";
+import {
+  TOGGLE_FAVOURITE_NOTE,
+  SET_BOOK_LIST,
+  SET_BOOK_REVIEW,
+} from "../actionTypes";
 
 const initialState = {
   notes: [],
   books: [],
   dailyNotes: [],
   favNotes: [],
+  bookReview: {},
 };
 
 export default function (state = initialState, action) {
@@ -18,7 +23,7 @@ export default function (state = initialState, action) {
         : (favNotes = [...state.favNotes, action.payload]);
       return {
         ...state,
-        favNotes
+        favNotes,
       };
     }
 
@@ -26,6 +31,13 @@ export default function (state = initialState, action) {
       return {
         ...state,
         books: [action.payload],
+      };
+    }
+
+    case SET_BOOK_REVIEW: {
+      return {
+        ...state,
+        bookReview: action.payload,
       };
     }
 

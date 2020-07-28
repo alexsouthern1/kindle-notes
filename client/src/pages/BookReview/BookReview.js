@@ -3,41 +3,37 @@ import ReviewCard from "../../components/ReviewCard/ReviewCard";
 import "./BookReview.css";
 import { getNotesDetails } from "../../logic/getDetails";
 import styled from "styled-components";
+import { connect } from "react-redux";
 
 const BookTitle = styled.h1`
-flex: 1;
-font-weight: 500;
-color: #1C3D5A;
-font-size: 20px
+  flex: 1;
+  font-weight: 500;
+  color: #1c3d5a;
+  font-size: 20px;
 `;
 
 const BookAuthor = styled.h1`
   flex: 1;
-  color: #8795A1;
-  font-size: 20px
+  color: #8795a1;
+  font-size: 20px;
 `;
 
 const BookReview = (props) => {
   const [notesDetails, setNotesDetails] = useState([]); // array of objects
-  const [title, setTitle] = useState();
-  const [author, setAuthor] = useState();
 
   useEffect(() => {
-    getNotes();    
-  }, []);
+    console.log("FOCUS 1, props.bookDetails: ", props.bookDetails);
+    getNotes();
+  }, [props.bookDetails]);
 
   const getNotes = async () => {
     let tempTitle;
-    if (!props.location.state.bookTitle) {
+    if (!props.bookDetails) {
       tempTitle = "The 5 AM Club";
     } else {
-      tempTitle = props.location.state.bookTitle;
+      tempTitle = props.bookDetails.title;
     }
 
-    setTitle(tempTitle);
-    setAuthor(props.location.state.author);
-
-    console.log(title);
     try {
       const res = await getNotesDetails({ title: tempTitle });
       setNotesDetails(res);
@@ -49,37 +45,44 @@ const BookReview = (props) => {
   return (
     <div>
       <div className="drev-outer-container">
-        <div className="brev-header">
-          <BookTitle>{title}</BookTitle>
-          <BookAuthor>{author}</BookAuthor>
-        </div>
-        <div className="drev-columns">
-          <div className="column is-1 nav-arrow-left"></div>
-          <div className="column is-1 drev-main-highlights-column">
-            {notesDetails.map((note, id) => (
-              <div key={id}>
-                <ReviewCard
-                  title={note.bookTitle}
-                  author={author}
-                  note={note.noteText}
-                  id={note.id}
-                />
+        {Object.entries(props.bookDetails).length !== 0 ? (
+          <div>
+            <div className="brev-header">
+              <BookTitle>{props.bookDetails.title}</BookTitle>
+              <BookAuthor>{props.bookDetails.author}</BookAuthor>
+            </div>
+            <div className="drev-columns">
+              <div className="column is-1 nav-arrow-left"></div>
+              <div className="column is-1 drev-main-highlights-column">
+                {notesDetails.map((note, id) => (
+                  <div key={id}>
+                    <ReviewCard
+                      title={note.bookTitle}
+                      author={props.bookDetails.author}
+                      note={note.noteText}
+                      id={note.id}
+                    />
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
 
-          <div className="column is-1 nav-arrow-right"></div>
-        </div>
+              <div className="column is-1 nav-arrow-right"></div>
+            </div>
+          </div>
+        ) : (
+          <div>
+            <h2>You have not selected a book for review yet!</h2>
+          </div>
+        )}
       </div>
-      <button
-        style={{ marginTop: "2.5%", marginBottom: "2.5%" }}
-        class="btn btn-primary btn-text"
-        onClick={getNotes}
-      >
-        Get Notes
-      </button>
     </div>
   );
 };
 
-export default BookReview;
+const mapStateToProps = (state) => {
+  return {
+    bookDetails: state.notes.bookReview,
+  };
+};
+
+export default connect(mapStateToProps)(BookReview);

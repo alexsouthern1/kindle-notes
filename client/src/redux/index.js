@@ -1,2 +1,2 @@
 // export { getRecipes, toggleFavouriteRecipe, fetchRecipeInformation } from "./actions/recipeActions"
-export { toggleFavouriteNote, setBookList } from "./actions/notesActions";
+export { toggleFavouriteNote, setBookList, setBookReview } from "./actions/notesActions";

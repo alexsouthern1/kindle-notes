@@ -1,0 +1,27 @@
+.dashboard-title {
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+.dashboard.container {
+  text-align: left;
+  margin-top: 2rem;
+}
+
+h5.dashboard-title {
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18rem;
+  margin-bottom: 1.1rem;
+  color: #222;
+}
+
+.dashboard-sub {
+  color: #9f8e7d;
+}
+
+h5.dashboard-title .dashboard-sub {
+  text-transform: initial;
+  letter-spacing: 0rem;
+  font-size: 1.5rem;
+}
