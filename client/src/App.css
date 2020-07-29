@@ -27,7 +27,17 @@
   color: #9f8e7d;
   font-family: "Raleway";
   margin-right: 5%;
+  text-decoration: none !important;
+  cursor: pointer;
 }
+
+.logo:hover {
+  color: #9f8e7d;
+}
+
+/* a {
+  text-decoration: none !important;
+} */
 
 .menu {
   height: 4rem;
@@ -81,4 +91,12 @@
 .nav-link {
   display: flex;
   align-items: center;
+}
+
+.app-body {
+  height: 100vh;
+}
+
+.app-container-body {
+  height: 100vh;
 }

@@ -1,0 +1,15 @@
+a {
+  text-decoration: none !important;
+}
+
+.info-card-container {
+  /* color: #807366; */
+  opacity: 0.75;
+  transition: 0.2s;
+}
+
+.info-card-container:hover {
+  color: #61584f;
+  opacity: 1;
+}
+

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./ReviewCard.css";
-import { getFavouriteFlag } from "../../logic/getDetails";
+import { getFavouriteFlag } from "../../../logic/getDetails";
 import ReactTooltip from "react-tooltip";
-import { toggleFavouriteNote } from "../../redux/"
+import { toggleFavouriteNote } from "../../../redux"
 import {connect} from "react-redux"
 
 const ReviewCard = ({ title, author, note, id, favNotes, toggleFavNote }) => {

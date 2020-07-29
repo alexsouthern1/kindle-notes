@@ -6,22 +6,45 @@
 .dashboard.container {
   text-align: left;
   margin-top: 2rem;
+  height: 100%;
+  width: 50%;
 }
 
 h5.dashboard-title {
-  font-size: 2rem;
+  font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: 0.18rem;
   margin-bottom: 1.1rem;
+  font-weight: 400;
   color: #222;
+}
+
+.dashboard-sub {
+  color: #9f8e7d;
+  font-size: 0.75rem;
+  letter-spacing: 0.05rem;
+}
+
+
+.hero.no-bg {
+  background: none !important;
+  padding-bottom: 1rem;
+  height: 100%;
+}
+
+
+h2.dashboard-title {
+  font-size: 2rem;
+  font-weight: 400;
 }
 
 .dashboard-sub {
   color: #9f8e7d;
 }
 
-h5.dashboard-title .dashboard-sub {
-  text-transform: initial;
-  letter-spacing: 0rem;
-  font-size: 1.5rem;
+h4.dashboard-title {
+  border-bottom: 1px solid lightgrey;
+  font-size: 2rem;
+  letter-spacing: 0.05rem;
+  font-weight: 400;
 }

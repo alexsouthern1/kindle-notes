@@ -21,20 +21,24 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 
 const App = () => {
   const routes = [
+    { path: "/dashboard:", name: "Dashboard", Component: Dashboard },
     { path: "/", name: "Welcome", Component: Welcome },
     { path: "/library", name: "Library", Component: Library },
     { path: "/dailyreview:", name: "Daily Review", Component: DailyReview },
     { path: "/bookreview:", name: "Book Review", Component: BookReview },
     { path: "/favourites:", name: "Favourites", Component: Favourites },
-    { path: "/dashboard:", name: "Dashboard", Component: Dashboard },
     // { path: "/pagenotfound:", name: "", Component: PageNotFound }
   ];
   return (
     <Router>
-      <div>
+      <div className="app-body">
         <div className="menu">
           <div className="menu-container">
-            <h3 className="logo">Lucy.</h3>
+            <h3>
+              <a className="logo" href="/dashboard:">
+                Lucy.
+              </a>
+            </h3>
 
             <div className="header-navigation">
               {routes.map((route) => (
@@ -54,7 +58,7 @@ const App = () => {
             </div>
           </div>
         </div>
-        <div>
+        <div className="app-container-body">
           {routes.map(({ path, Component }) => (
             <Route key={path} exact path={path} component={Component} />
           ))}
