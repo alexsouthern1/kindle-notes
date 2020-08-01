@@ -1,41 +1,33 @@
 import React, { useState, useEffect } from "react";
 import "./ReviewCard.css";
-import { getFavouriteFlag } from "../../../logic/getDetails";
+import { toggleFavouriteFlag } from "../../logic/sendDetails";
 import ReactTooltip from "react-tooltip";
-import { toggleFavouriteNote } from "../../../redux"
-import {connect} from "react-redux"
+import { toggleFavouriteNote } from "../../redux";
+import { connect } from "react-redux";
 
-const ReviewCard = ({ title, author, note, id, favNotes, toggleFavNote }) => {
+const ReviewCard = ({ title, author, note, id, favourite, toggleFavNote }) => {
   const [favouriteFlag, setFavouriteFlag] = useState(false);
-  const [idState, setIDState] = useState();
 
   useEffect(() => {
-    console.log(`ID changed to: ${id}`);
-    setIDState(id);
-  }, id);
+    setFavouriteFlag(favourite);
+  }, []);
+
+  // useEffect(() => {
+  //   // setFavouriteFlag(favourite);
+  //   console.log("Favourite flag state changed: ", favouriteFlag);
+  // }, [favouriteFlag]);
 
   const handleFavouriteFlag = async () => {
     console.log(`Button clicked! id: ${id}`);
+    setFavouriteFlag(!favouriteFlag);
+    toggleFavouriteFlag({ id });
+
     // toggleFavNote()
     // TODO: get favourite notes toggle working
     // just need to determine best way to see if note is true or false
-    // if true, set favouriteFlag = true, o.w. false 
-    // might be inefficient to query databse for each note on page, 
+    // if true, set favouriteFlag = true, o.w. false
+    // might be inefficient to query databse for each note on page,
     // therefore store all notes in redux store (update databse when favourites change and update store at same time)
-
-
-    try {
-      const resp = await getFavouriteFlag({ id });
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  
-
-
-  const updateFavouriteFlag = async () => {
-
   };
 
   return (
@@ -46,11 +38,11 @@ const ReviewCard = ({ title, author, note, id, favNotes, toggleFavNote }) => {
             <div className="drev-media">
               <img
                 src="https://is1-ssl.mzstatic.com/image/thumb/Publication128/v4/f3/69/5f/f3695f43-ade6-325d-ff22-2038d07d0b43/9780008312855.jpg/1400x2141w.jpg"
-                class="highlight-title-image media-left"
+                className="highlight-title-image media-left"
               />
               <a
                 style={{ textDecoration: "none" }}
-                class="media-content"
+                className="media-content"
                 href=""
               >
                 <span className="drev-highight-title">{title}</span>
@@ -83,9 +75,9 @@ const ReviewCard = ({ title, author, note, id, favNotes, toggleFavNote }) => {
               <p className="icon-label">Tag</p>
             </div>
             <div className="level-item icon-parent has-text-centered no-select">
-              <a data-tip data-for="favourite">
+              <a data-tip data-for="favourite" onClick={handleFavouriteFlag}>
                 <p className="drev-p">
-                  {!favouriteFlag ? (
+                  {favouriteFlag ? (
                     <img src="https://readwise-assets.s3.amazonaws.com/static/images/icons/favorite-full.519718cc5ddf.svg" />
                   ) : (
                     <img src="https://readwise-assets.s3.amazonaws.com/static/images/icons/favorite.90dd0caf3364.svg" />
@@ -150,16 +142,16 @@ const ReviewCard = ({ title, author, note, id, favNotes, toggleFavNote }) => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    favNotes: state.notes.favNotes
-  }
-}
+    // favNotes: state.notes.favNotes,
+  };
+};
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    toggleFavNote: (note) => dispatch(toggleFavouriteNote(note))
-  }
-}
+    toggleFavNote: (note) => dispatch(toggleFavouriteNote(note)),
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReviewCard);

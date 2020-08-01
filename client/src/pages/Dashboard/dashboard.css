@@ -23,6 +23,7 @@ h5.dashboard-title {
   color: #9f8e7d;
   font-size: 0.75rem;
   letter-spacing: 0.05rem;
+  text-transform: none;
 }
 
 

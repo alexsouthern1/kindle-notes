@@ -21,8 +21,7 @@ const BookAuthor = styled.h1`
 const BookReview = (props) => {
   const [notesDetails, setNotesDetails] = useState([]); // array of objects
 
-  useEffect(() => {
-    console.log("FOCUS 1, props.bookDetails: ", props.bookDetails);
+  useEffect(() => {    
     getNotes();
   }, [props.bookDetails]);
 
@@ -35,7 +34,7 @@ const BookReview = (props) => {
     }
 
     try {
-      const res = await getNotesDetails({ title: tempTitle });
+      const res = await getNotesDetails({ title: tempTitle });      
       setNotesDetails(res);
     } catch (err) {
       console.error(err);
@@ -60,7 +59,8 @@ const BookReview = (props) => {
                       title={note.bookTitle}
                       author={props.bookDetails.author}
                       note={note.noteText}
-                      id={note.id}
+                      id={note._id}
+                      favourite={note.favourite}
                     />
                   </div>
                 ))}

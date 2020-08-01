@@ -10,3 +10,7 @@ export const sendDetails = async payload => {
 export const sendApi = async payload => {
   return await post("/api", JSON.stringify(payload));
 };
+
+export const toggleFavouriteFlag = async payload => {  
+  return await post(`/favourite/update?id=${payload.id}`, JSON.stringify(payload))
+}

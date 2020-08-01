@@ -8,6 +8,10 @@ export const getNotesDetails = async (payload) => {
   return await get(`/bookreview?bookTitle=${payload.title}`);
 }
 
-export const getFavouriteFlag = async (payload) => {
-  return await get(`/favourite?id=${payload.id}`);
+export const getFavouriteNotes = async (payload) => {
+  return await get(`/favourite`);
+}
+
+export const getMasteryNotes = async (payload) => {
+  return await get(`/mastery`);
 }

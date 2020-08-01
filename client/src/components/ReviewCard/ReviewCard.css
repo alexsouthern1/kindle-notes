@@ -174,3 +174,7 @@ a {
 .drev-p {
   height: 0.5rem !important;
 }
+
+.__react_component_tooltip.show {
+  opacity: 1 !important;
+}

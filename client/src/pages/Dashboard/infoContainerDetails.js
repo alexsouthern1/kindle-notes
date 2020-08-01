@@ -8,7 +8,7 @@ export const infoContainerDetails = {
         cardSubTitle: "(your daily dose of wisdom)",
         urlRef: "/dailyreview",
       },
-      {        
+      {
         icon: "fa fa-refresh",
         cardTitle: " Add Higlights ",
         cardSubTitle: "(sync your highlights and notes)",
@@ -30,6 +30,13 @@ export const infoContainerDetails = {
         cardTitle: " Favourites ",
         cardSubTitle: "(browse your favourite passages)",
         urlRef: "/favourites:",
+      },
+      {
+        icon: "fa fa-brain",
+        cardTitle: " Mastery ",
+        cardSubTitle:
+          "(retain 10x more from your books through active recall testing)",
+        urlRef: "/mastery:",
       },
     ],
   },

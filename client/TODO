@@ -5,11 +5,12 @@
 
 
 * add favourite notes
-  * client
-  * backend 
+  * client: just need to present noes from favouritesArray  
   * See ReviewCard for details on what to do 
 
 
 # Links
 * Find out why links have ':' in them.
 * Find out best way to format links 
+
+* Find out why 75 files not being pushed to github...

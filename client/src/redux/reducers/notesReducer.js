@@ -13,8 +13,9 @@ const initialState = {
 };
 
 export default function (state = initialState, action) {
-  switch (action.type) {
+  switch (action.type) {    
     case TOGGLE_FAVOURITE_NOTE: {
+      console.log("TOGGLE_FAVOURITE_NOTE");
       let favNotes = state.favNotes;
       // if fav notes contains note, then set value to opposite (could just say false)
       // o.w. add the note to the list
