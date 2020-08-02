@@ -3,6 +3,7 @@ const libraryRoute = require("./routes/library");
 const addNotesRoute = require("./routes/notes");
 const bookReviewRoute = require("./routes/bookReview");
 const favouritesRoute = require("./routes/favourites");
+const masteryRoute = require("./routes/mastery")
 const app = express();
 
 app.get("/", (req, res) => {
@@ -16,6 +17,8 @@ app.use("/library", libraryRoute);
 app.use("/bookreview", bookReviewRoute);
 
 app.use("/favourite", favouritesRoute);
+
+app.use("/mastery", masteryRoute);
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));

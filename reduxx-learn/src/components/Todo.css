@@ -1,0 +1,18 @@
+.todo-item {
+  background-color: #333;
+  border-radius: 5px;
+  width: 30%;
+  color: white;
+  margin-top: 2.5%;
+  padding: 2% 0;
+  transition: 1s;
+  opacity: 0.8;
+  cursor: pointer;
+  -webkit-box-shadow: 3px 3px 35px -21px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 3px 3px 35px -21px rgba(0, 0, 0, 0.75);
+  box-shadow: 3px 3px 35px -21px rgba(0, 0, 0, 0.75);
+}
+
+.todo-item:hover {
+  opacity: 1;
+}
