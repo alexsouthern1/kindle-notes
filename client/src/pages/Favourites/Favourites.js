@@ -2,31 +2,13 @@ import React, { useState, useEffect } from "react";
 import "./Favourites.css";
 import ReviewCard from "../../components/ReviewCard/ReviewCard";
 import { connect } from "react-redux";
-import styled from "styled-components";
+import { PageTitle, PageSubTitle, FavouritesColumn } from "./styles.js";
 import { getFavouriteNotes } from "../../logic/getDetails";
 import Switch from "react-switch";
 
 const Favourites = () => {
   const [favNoteDetails, setFavNoteDetails] = useState();
   const [switchState, setSwitchState] = useState(false);
-
-  const PageTitle = styled.h1`
-    flex: 1;
-    font-weight: 500;
-    color: #1c3d5a;
-    font-size: 20px;
-  `;
-
-  const PageSubTitle = styled.h1`
-    flex: 1;
-    color: #8795a1;
-    font-size: 20px;
-  `;
-
-  const FavouritesColumn = styled.div`
-    display: grid;
-    grid-template-columns: ${(props) => (props.boolVar ? "1fr 1fr" : "1fr")};
-  `;
 
   useEffect(() => {
     console.log("Favourites useEffect");
@@ -49,9 +31,8 @@ const Favourites = () => {
       <div className="drev-outer-container">
         <div className="brev-header">
           <PageTitle>Enjoy your favourites</PageTitle>
-          <PageSubTitle>...</PageSubTitle>
-          <label className="toggle-switch-container">
-            {/* <span style={{marginRight: 10}}>Toggle Layout</span> */}
+          {/* <PageSubTitle>...</PageSubTitle> */}
+          <label className="toggle-switch-container">            
             <Switch
               onChange={handleSwitchChange}
               checked={switchState}

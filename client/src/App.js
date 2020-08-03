@@ -24,9 +24,9 @@ const App = () => {
     { path: "/dashboard:", name: "Dashboard", Component: Dashboard },
     { path: "/", name: "Welcome", Component: Welcome },
     { path: "/library", name: "Library", Component: Library },
-    { path: "/dailyreview:", name: "Daily Review", Component: DailyReview },
+    { path: "/dailyreview", name: "Daily Review", Component: DailyReview },
     { path: "/bookreview:", name: "Book Review", Component: BookReview },
-    { path: "/favourites:", name: "Favourites", Component: Favourites },
+    { path: "/favourites", name: "Favourites", Component: Favourites },
     // { path: "/pagenotfound:", name: "", Component: PageNotFound }
   ];
   return (

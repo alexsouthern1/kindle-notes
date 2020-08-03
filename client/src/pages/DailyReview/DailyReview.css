@@ -48,25 +48,24 @@ body {
 }
 
 .drev-bottom-buttons-container:hover p {
-  opacity: 1;  
+  opacity: 1;
 }
 
-.drev-main-highlights-column {  
+.drev-main-highlights-column {
   flex: 4;
   flex-shrink: 0;
   overflow: auto;
 }
 
-
 .display-mode-toggle {
-  background-color: #6CB2EB;
+  background-color: #6cb2eb;
   color: white;
   font-weight: 500;
   font-size: 14px;
   line-height: normal;
   position: absolute;
   top: 12% !important;
-  left: 45%;  
+  left: 45%;
   top: 0px;
   padding: 2px;
   border-radius: 2px;
@@ -82,7 +81,7 @@ body {
 
 .toggle-option.toggle-selected {
   background: white;
-  color: #6CB2EB;
+  color: #6cb2eb;
 }
 
 .review-scroller {
@@ -100,7 +99,7 @@ body {
 .circle-button {
   height: 60px;
   width: 60px;
-  background: #FFFFFF;
+  background: #ffffff;
   box-sizing: border-box;
   border-radius: 50%;
   display: flex;
@@ -111,5 +110,35 @@ body {
   color: rgb(131, 215, 5);
 }
 
+.arrow-column-left {
+  left: 5%;
+  width: 25%;
+  display: flex;
+  margin-top: 12%;
+  position: static;
+}
 
-/* style="background: url(&quot;https://readwise-assets.s3.amazonaws.com/static/images/icons/nav-right-green.dba47be9ccb4.svg&quot;) center center / 18px no-repeat white;"></div> */
+.arrow-column-right {
+  right: 5%;
+  width: 25%;
+  display: flex;
+  margin-top: 12%;
+  top: 100px;
+  position: static;
+  justify-content: flex-end;
+}
+
+.arrow-hidden {
+  opacity: 0% !important;
+}
+.arrow-icon {
+  cursor: pointer;
+  opacity: 0.7;
+  transition: 0.4s;
+  height: min-content;
+}
+
+.arrow-icon:hover {
+  opacity: 1;
+}
+

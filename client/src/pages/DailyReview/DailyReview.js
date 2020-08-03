@@ -2,16 +2,47 @@ import React, { useState, useEffect } from "react";
 import "./DailyReview.css";
 import ReviewCard from "../../components/ReviewCard/ReviewCard";
 import { getMasteryNotes } from "../../logic/getDetails";
-import styled from "styled-components";
+import {
+  NotesCol,
+  CarouselLockup,
+  Wrapper,
+  Slide,
+  SliderContent,
+} from "./styles.js";
 import cx from "classnames";
 
 const DailyReview = () => {
   const [reviewNotes, setReviewNotes] = useState();
+  const [currNoteIdx, setCurrNoteIdx] = useState(0); // default first note
   const [viewType, setViewType] = useState(false);
+  const [leftArrowHidden, setLeftArrowHidden] = useState(true);
+  const [rightArrowHidden, setRightArrowHidden] = useState(true);
+
+  const handleRightArrowClick = () => {
+    setCurrNoteIdx(currNoteIdx + 1);
+  };
+
+  const handleLeftArrowClick = () => {
+    setCurrNoteIdx(currNoteIdx - 1);
+  };
+
+  useEffect(() => {
+    if (reviewNotes) {
+      currNoteIdx === reviewNotes.length - 1
+        ? setRightArrowHidden(true)
+        : setRightArrowHidden(false);
+
+      currNoteIdx == 0 ? setLeftArrowHidden(true) : setLeftArrowHidden(false);
+    }
+  }, [currNoteIdx, reviewNotes]);
 
   const viewTypeScroll = cx("toggle-option", {
     "toggle-selected": viewType,
   });
+
+  const arrowContainerLeft = cx("fa", "fa-arrow-left", "fa-2x", "arrow-icon");
+
+  const arrowContainerRight = cx("fa", "fa-arrow-right", "fa-2x", "arrow-icon");
 
   const viewTypeReview = cx("toggle-option", {
     "toggle-selected": !viewType,
@@ -26,15 +57,15 @@ const DailyReview = () => {
     setReviewNotes(tmp);
   };
 
-  const NotesCol = styled.div`
-    display: grid;
-    grid-template-columns: ${(props) => (props.boolVar ? "1fr 1fr" : "1fr")};
-  `;
-
   const handleViewChange = () => {
-    console.log("FOCUS 3");
-    console.log(viewType);
     setViewType(!viewType);
+    if (!viewType) {
+      setLeftArrowHidden(true);
+      setRightArrowHidden(true);
+    } else {
+      setCurrNoteIdx(0);
+      setRightArrowHidden(false);
+    }
   };
 
   return (
@@ -45,33 +76,67 @@ const DailyReview = () => {
       </div>
       <div className="drev-header"></div>
       <div className="drev-columns">
-        <div className="column is-1 nav-arrow-left"></div>
+        {!leftArrowHidden ? (
+          <div
+            onClick={handleLeftArrowClick}
+            className="arrow-column arrow-column-left"
+          >
+            <i className={arrowContainerLeft} aria-hidden="true"></i>
+          </div>
+        ) : null}
 
-        <div className="column is-1 drev-main-highlights-column">
-          <NotesCol boolVar={viewType} onClick={handleViewChange}>
-            {reviewNotes
-              ? reviewNotes.map((note, id) => (
-                  <div className="favourites-card" key={id}>
+        {reviewNotes && !viewType ? (
+          <CarouselLockup data-testid="test">
+            <Wrapper>
+              <SliderContent
+                index={currNoteIdx}
+                transition={1}
+                totalSlides={reviewNotes.length}
+                data-testid="carousel-lockup"
+              >
+                {reviewNotes.map((note, index) => (
+                  <Slide
+                    key={index}
+                    id={
+                      currNoteIdx === index ? "active-slide" : "inactive-slide"
+                    }
+                  >
                     <ReviewCard
+                      key={index}
                       title={note.bookTitle}
                       author={note.bookAuthor}
                       note={note.noteText}
                       id={note._id}
                       favourite={note.favourite}
                     />
-                    <div className="review-scroller">
-                      <div className="circle-parent">
-                        <div className="circle-button">
-                          <i className="fas fa-angle-right fa-2x"></i>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))
-              : null}
+                  </Slide>
+                ))}
+              </SliderContent>
+            </Wrapper>
+          </CarouselLockup>
+        ) : reviewNotes && viewType ? (
+          <NotesCol>
+            {reviewNotes.map((note, index) => (
+              <ReviewCard
+                key={index}
+                title={note.bookTitle}
+                author={note.bookAuthor}
+                note={note.noteText}
+                id={note._id}
+                favourite={note.favourite}
+              />
+            ))}
           </NotesCol>
-        </div>
-        <div className="column is-1 nav-arrow-right"></div>
+        ) : null}
+
+        {!rightArrowHidden ? (
+          <div
+            onClick={handleRightArrowClick}
+            className="arrow-column arrow-column-right"
+          >
+            <i className={arrowContainerRight} aria-hidden="true"></i>
+          </div>
+        ) : null}
       </div>
     </div>
   );

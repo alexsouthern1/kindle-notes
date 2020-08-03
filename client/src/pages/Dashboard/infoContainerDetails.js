@@ -29,14 +29,14 @@ export const infoContainerDetails = {
         icon: "fa fa-heart",
         cardTitle: " Favourites ",
         cardSubTitle: "(browse your favourite passages)",
-        urlRef: "/favourites:",
+        urlRef: "/favourites",
       },
       {
         icon: "fa fa-brain",
         cardTitle: " Mastery ",
         cardSubTitle:
           "(retain 10x more from your books through active recall testing)",
-        urlRef: "/mastery:",
+        urlRef: "/dailyreview",
       },
     ],
   },

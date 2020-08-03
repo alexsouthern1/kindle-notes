@@ -1,23 +1,20 @@
-import React, { useEffect} from 'react'
-import InfoCard from '../InfoCard/InfoCard'
+import React, { useEffect } from "react";
+import InfoCard from "../InfoCard/InfoCard";
 
-const DashboardInfoContainer = ({infoContainerDetails}) => {
+const DashboardInfoContainer = ({ infoContainerDetails }) => {
   useEffect(() => {
-    
-    infoContainerDetails.content.map(val => {
-      console.log(val);
-    })
-  }, [])
+    infoContainerDetails.content.map((val) => {});
+  }, []);
   return (
     <div>
       <h4 className="dashboard-title">{infoContainerDetails.title}</h4>
       {infoContainerDetails.content.map((content, id) => (
         <div>
-          <InfoCard cardDetails={content}/>
+          <InfoCard cardDetails={content} />
         </div>
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default DashboardInfoContainer
+export default DashboardInfoContainer;
