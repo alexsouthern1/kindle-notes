@@ -70,6 +70,17 @@ const DailyReview = () => {
 
   return (
     <div className="drev-outer-container">
+      <div className="progress-container">
+        <div className="progress review-progress">
+          <div
+            className="progress-bar review-progress-bar review-progress"
+            role={"progressbar"}
+            aria-valuenow={"75"}
+            aria-valuemin={"0"}
+            aria-valuemax={"100"}
+          ></div>
+        </div>
+      </div>
       <div className="display-mode-toggle" onClick={handleViewChange}>
         <div className={viewTypeScroll}>Scroll</div>
         <div className={viewTypeReview}>Review</div>
